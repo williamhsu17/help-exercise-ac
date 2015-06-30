@@ -1,0 +1,11 @@
+<h2><%= @message.title %></h2>
+
+<%= simple_format @message.content %>
+
+<h2>Comments list</h2>
+
+<% @message.comments.each do |comment| %>
+
+  <p><%= simple_format comment.content %> at <%= comment.created_at.to_s(:short) %></p>
+
+<% end %>

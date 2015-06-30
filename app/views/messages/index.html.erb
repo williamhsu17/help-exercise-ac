@@ -1,0 +1,10 @@
+<h2>Message list</h2>
+
+<table>
+<% @messages.each do |msg| %>
+  <tr>
+    <td><%= link_to msg.title, message_path(msg) %></td>
+    <td><%= msg.created_at.to_s(:short) %></td>
+  </tr>
+<% end %>
+</table>
