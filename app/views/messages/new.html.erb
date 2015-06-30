@@ -1,0 +1,21 @@
+<%= form_for @message do |f| %>
+
+  <p>
+    <%= f.label :title %>
+    <%= f.text_field :title, :required => true %>
+  </p>
+
+  <p>
+    <%= f.label :category_name %>
+    <%= f.select :category_name, ["快報", "求物資", "求救"], :required => true %>
+  </p>
+
+  <p>
+    <%= f.label :content %>
+    <%= f.text_area :content, :required => true %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
