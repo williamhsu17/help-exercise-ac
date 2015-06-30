@@ -10,8 +10,15 @@
 <% @messages.each do |msg| %>
   <tr>
     <td><%= link_to msg.title, message_path(msg) %></td>
+    <td><%= msg.category_name %></td>
     <td><%= msg.user.display_name %></td>
     <td><%= msg.created_at.to_s(:short) %></td>
+    <td>
+      <% if msg.user == current_user %>
+        <%= link_to "Edit", edit_message_path(msg) %>
+        <%= link_to "Delete", message_path(msg), :method => :delete, :data => { :confirm => "Are u sure?"} %>
+      <% end %>
+    </td>
   </tr>
 <% end %>
 </table>
