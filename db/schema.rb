@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150630014917) do
+ActiveRecord::Schema.define(version: 20150728165437) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "content"
@@ -28,10 +28,12 @@ ActiveRecord::Schema.define(version: 20150630014917) do
     t.text     "content"
     t.integer  "user_id"
     t.string   "category_name"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.string   "status",        default: "pending"
   end
 
+  add_index "messages", ["status"], name: "index_messages_on_status"
   add_index "messages", ["user_id"], name: "index_messages_on_user_id"
 
   create_table "users", force: :cascade do |t|

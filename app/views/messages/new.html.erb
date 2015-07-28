@@ -6,6 +6,11 @@
   </p>
 
   <p>
+    <%= f.label :status %>
+    <%= f.select :status, [ [ "進行中", "pending"], ["已解決", "completed"] ], :required => true %>
+  </p>
+
+  <p>
     <%= f.label :category_name %>
     <%= f.select :category_name, ["快報", "求物資", "求救"], :required => true %>
   </p>

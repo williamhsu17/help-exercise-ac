@@ -4,12 +4,19 @@
 <%= link_to "New Message", new_message_path %>
 </p>
 
+<p>
+  <%= link_to "列出進行中訊息", messages_path( :status => "pending" ) %> |
+  <%= link_to "列出一週內進行中的訊息", messages_path( :status => "pending", :days => 7 ) %> |
+  <%= link_to "列出所有已完成訊息", messages_path( :status => "completed" ) %>
+</p>
+
 <%= paginate @messages %>
 
 <table>
 <% @messages.each do |msg| %>
   <tr>
     <td><%= link_to msg.title, message_path(msg) %></td>
+    <td><%= msg.status %></td>
     <td><%= msg.category_name %></td>
     <td><%= msg.user.display_name %></td>
     <td><%= msg.created_at.to_s(:short) %></td>

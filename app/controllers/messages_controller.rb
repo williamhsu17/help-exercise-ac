@@ -4,6 +4,22 @@ class MessagesController < ApplicationController
 
   def index
     @messages = Message.order("id DESC").page( params[:page] )
+
+    # TODO: extract three ActiveRecord scopes
+    # 1. @messages.pending
+    # 2. @messages.completed
+    # 3. @messages.within_days(params[:days].to_i)
+
+    if params[:status] == "pending"
+      @messages = @messages.where( :status => "pending" )
+    elsif params[:status] == "completed"
+      @messages = @messages.where( :status => "completed" )
+    end
+
+    if params[:days]
+      @messages = @messages.where( ["created_at >= ?", Time.now - params[:days].to_i.days ] )
+    end
+
   end
 
   def show
