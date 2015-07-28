@@ -11,6 +11,10 @@ class User < ActiveRecord::Base
     self.email.split("@").first
   end
 
+  def posts_count
+    # TODO: 請完成我
+  end
+
   def words_count
     count = 0
     self.messages.find_each do |x|
