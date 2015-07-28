@@ -4,4 +4,8 @@ class Message < ActiveRecord::Base
 
   has_many :comments, :dependent => :destroy
 
+  def last_comment_summary
+    self.comments.last.try(:content).try(:truncate, 20)
+  end
+
 end

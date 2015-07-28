@@ -13,6 +13,16 @@
 <%= paginate @messages %>
 
 <table>
+<tr>
+  <th>標題</th>
+  <th>狀態</th>
+  <th>分類</th>
+  <th>貼文使用者</th>
+  <th>貼文時間</th>
+  <th>最後一筆留言摘要</th>
+  <th></th>
+</tr>
+
 <% @messages.each do |msg| %>
   <tr>
     <td><%= link_to msg.title, message_path(msg) %></td>
@@ -20,6 +30,7 @@
     <td><%= msg.category_name %></td>
     <td><%= msg.user.display_name %></td>
     <td><%= msg.created_at.to_s(:short) %></td>
+    <td><%= msg.last_comment_summary %></td>
     <td>
       <% if msg.user == current_user %>
         <%= link_to "Edit", edit_message_path(msg) %>

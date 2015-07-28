@@ -3,6 +3,7 @@ class MessagesController < ApplicationController
   before_action :authenticate_user!, :except => [:index, :show]
 
   def index
+    # TODO: fix N+1 queries for user and comments
     @messages = Message.order("id DESC").page( params[:page] )
 
     # TODO: extract three ActiveRecord scopes
@@ -19,7 +20,6 @@ class MessagesController < ApplicationController
     if params[:days]
       @messages = @messages.where( ["created_at >= ?", Time.now - params[:days].to_i.days ] )
     end
-
   end
 
   def show
