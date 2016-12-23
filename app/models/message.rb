@@ -13,6 +13,10 @@ class Message < ApplicationRecord
   scope :pending, -> { where( :status => "pending" ) }
   scope :completed, -> { where( :status => "completed" ) }
 
+  def self.within_days(number_of_days)
+    where( ["created_at >= ?", Time.now - number_of_days.days ] )
+  end
+
   def last_comment_summary
     self.comments.last.try(:content).try(:truncate, 20)
   end
