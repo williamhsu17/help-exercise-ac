@@ -7,6 +7,12 @@ class User < ApplicationRecord
   has_many :messages
   has_many :comments
 
+  has_many :likes
+  has_many :liked_messages, :through => :likes, :source => "message"
+
+  has_many :subscriptions
+  has_many :subscribed_messages, :through => :subscriptions, :source => "message"
+
   def display_name
     self.email.split("@").first
   end
@@ -30,4 +36,7 @@ class User < ApplicationRecord
     return count
   end
 
+  def short_name
+    self.email.split('@').first
+  end
 end

@@ -1,5 +1,17 @@
 <h2><%= @message.title %></h2>
 
+<p>讚過的人：
+  <% @message.liked_users.each do |u| %>
+    <span><%= "#{u.short_name}, " %></span>
+  <% end %>
+</p>
+
+<p>訂閱過的人：
+  <% @message.subscribed_users.each do |u| %>
+    <span><%= "#{u.short_name}," %></span>
+  <% end %>
+</p>
+
 <%= simple_format @message.content %>
 
 <h2>Comments list</h2>
