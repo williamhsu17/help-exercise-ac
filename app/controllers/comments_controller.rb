@@ -16,7 +16,10 @@ class CommentsController < ApplicationController
     @comment = current_user.comments.find( params[:id] )
     @comment.destroy
 
-    redirect_to :back
+    respond_to do |format|
+      format.js { render 'remove_one_from_comment_index.js.erb' }
+      format.html { redirect_to :back }
+    end
   end
 
   protected
